@@ -3,19 +3,22 @@
 import Link from "next/link"
 import Image from "next/image"
 import { useState } from "react"
+import { usePathname } from "next/navigation"
 import { motion } from "motion/react"
 import QuoteModal from "./quote-modal"
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const pathname = usePathname()
 
+  // Navigation links that work on both homepage and other pages
   const navLinks = [
-    { label: "Home", href: "#home" },
-    { label: "About", href: "#about" },
-    { label: "FAQ", href: "#faq" },
-    { label: "Blog", href: "#blog" },
-    { label: "Contact", href: "#contact" },
+    { label: "Home", href: pathname === "/" ? "#hero" : "/#hero" },
+    { label: "About", href: pathname === "/" ? "#story" : "/#story" },
+    { label: "Products", href: "/products" },
+    { label: "Blog", href: pathname === "/" ? "#blog" : "/#blog" },
+    { label: "Contact", href: pathname === "/" ? "#contact" : "/#contact" },
   ]
 
   return (
@@ -43,15 +46,26 @@ export default function Navbar() {
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
-              <motion.a
-                key={link.label}
-                href={link.href}
-                className="relative px-4 py-2 text-foreground/70 hover:text-primary transition-colors duration-200 text-sm font-medium rounded-full group"
-                whileHover={{ scale: 1.05 }}
-              >
-                {link.label}
-                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-primary group-hover:w-3/4 transition-all duration-300" />
-              </motion.a>
+              <motion.div key={link.label}>
+                {link.href.startsWith('/') ? (
+                  <Link
+                    href={link.href}
+                    className="relative px-4 py-2 text-foreground/70 hover:text-primary transition-colors duration-200 text-sm font-medium rounded-full group"
+                  >
+                    {link.label}
+                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-primary group-hover:w-3/4 transition-all duration-300" />
+                  </Link>
+                ) : (
+                  <motion.a
+                    href={link.href}
+                    className="relative px-4 py-2 text-foreground/70 hover:text-primary transition-colors duration-200 text-sm font-medium rounded-full group"
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    {link.label}
+                    <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-primary group-hover:w-3/4 transition-all duration-300" />
+                  </motion.a>
+                )}
+              </motion.div>
             ))}
           </div>
 
@@ -92,14 +106,25 @@ export default function Navbar() {
             className="md:hidden pb-6 space-y-1"
           >
             {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="block py-3 px-4 text-foreground/70 hover:text-primary hover:bg-muted rounded-lg transition-all"
-                onClick={() => setIsOpen(false)}
-              >
-                {link.label}
-              </a>
+              <div key={link.label}>
+                {link.href.startsWith('/') ? (
+                  <Link
+                    href={link.href}
+                    className="block py-3 px-4 text-foreground/70 hover:text-primary hover:bg-muted rounded-lg transition-all"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                ) : (
+                  <a
+                    href={link.href}
+                    className="block py-3 px-4 text-foreground/70 hover:text-primary hover:bg-muted rounded-lg transition-all"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {link.label}
+                  </a>
+                )}
+              </div>
             ))}
             <button 
               onClick={() => {

@@ -12,7 +12,7 @@ export default function StorySection() {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   return (
-    <section ref={ref} className="section-padding bg-white dark:bg-background">
+    <section id="story" ref={ref} className="section-padding bg-white dark:bg-background">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           {/* Text Content - Left */}

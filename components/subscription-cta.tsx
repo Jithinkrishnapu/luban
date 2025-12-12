@@ -10,48 +10,31 @@ export default function SubscriptionCTA() {
 
   return (
     <>
-    <section className="relative w-full min-h-[700px] overflow-hidden flex items-center">
+    <section className="relative w-full py-20 lg:py-32">
       {/* Background Image */}
-      <Image
-        src="/luxury-soaps-essential-oils-spa.jpg"
-        alt="Subscription background"
-        fill
-        className="object-cover scale-105"
-        quality={85}
-      />
-
-      {/* Modern Gradient Overlay */}
-      <motion.div
-        className="absolute inset-0 bg-gradient-to-br from-primary/60 via-primary-dark/50 to-black/60"
-        initial={{ opacity: 0.8 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.6 }}
-      />
-      
-      {/* Animated Background Elements */}
       <div className="absolute inset-0">
-        <motion.div
-          className="absolute top-1/4 left-1/4 w-64 h-64 bg-white/5 rounded-full blur-3xl"
-          animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.5, 0.3] }}
-          transition={{ duration: 8, repeat: Infinity }}
+        <Image
+          src="/luxury-soaps-essential-oils-spa.jpg"
+          alt="Subscription background"
+          fill
+          className="object-cover"
+          quality={85}
         />
-        <motion.div
-          className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent/10 rounded-full blur-3xl"
-          animate={{ scale: [1.3, 1, 1.3], opacity: [0.3, 0.5, 0.3] }}
-          transition={{ duration: 10, repeat: Infinity }}
-        />
+        {/* Simple overlay for better text readability */}
+        <div className="absolute inset-0 bg-black/60" />
       </div>
 
       {/* Content */}
-      <motion.div
-        className="relative z-10 w-full flex flex-col items-center justify-center px-6 py-24 text-center text-white"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-      >
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          className="text-center text-white"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
         <motion.p
-          className="text-subtitle text-white/90 mb-6"
+          className="text-sm sm:text-base font-medium text-white/90 mb-4 tracking-wider uppercase"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.6 }}
@@ -60,20 +43,20 @@ export default function SubscriptionCTA() {
         </motion.p>
 
         <motion.h2
-          className="heading-md md:heading-lg mb-6 max-w-3xl"
+          className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-serif mb-6 leading-tight"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.3, duration: 0.6 }}
         >
           Luxury Soaps
           <br />
-          <span className="gradient-text bg-gradient-to-r from-white via-primary-light to-white bg-clip-text text-transparent">
+          <span className="text-primary">
             Delivered Monthly!
           </span>
         </motion.h2>
 
         <motion.p
-          className="text-lg md:text-xl max-w-2xl mb-10 text-white/90 leading-relaxed"
+          className="text-lg sm:text-xl max-w-3xl mx-auto mb-10 text-white/90 leading-relaxed"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.4, duration: 0.6 }}
@@ -83,7 +66,7 @@ export default function SubscriptionCTA() {
         </motion.p>
 
         <motion.div
-          className="flex flex-col sm:flex-row gap-4"
+          className="flex flex-col sm:flex-row gap-4 justify-center mb-12"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.5, duration: 0.6 }}
@@ -92,9 +75,9 @@ export default function SubscriptionCTA() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => setIsModalOpen(true)}
-            className="btn-primary bg-white text-primary hover:shadow-white/30"
+            className="btn-primary bg-white text-primary"
           >
-            <span>Get a Quote</span>
+            Get a Quote
           </motion.button>
           
           <motion.a
@@ -109,7 +92,7 @@ export default function SubscriptionCTA() {
 
         {/* Feature Pills */}
         <motion.div
-          className="flex flex-wrap justify-center gap-4 mt-12"
+          className="flex flex-wrap justify-center gap-4"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.6, duration: 0.6 }}
@@ -117,13 +100,14 @@ export default function SubscriptionCTA() {
           {["Free Shipping", "Cancel Anytime", "Premium Quality"].map((feature) => (
             <div
               key={feature}
-              className="px-6 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-sm font-medium"
+              className="px-4 py-2 bg-white/10 backdrop-blur-sm border border-white/20 text-sm font-medium"
             >
               {feature}
             </div>
           ))}
         </motion.div>
-      </motion.div>
+        </motion.div>
+      </div>
     </section>
 
     {/* Quote Modal */}

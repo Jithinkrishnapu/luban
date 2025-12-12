@@ -26,14 +26,10 @@ export default function Footer() {
   ]
 
   return (
-    <footer className="relative bg-gradient-to-br from-foreground via-foreground to-primary-dark text-white section-padding overflow-hidden">
-      {/* Decorative Background Elements */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-primary rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-80 h-80 bg-accent rounded-full blur-3xl" />
-      </div>
+    <footer id="contact" className="bg-foreground text-white py-16 lg:py-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-      <div className="relative z-10 max-w-7xl mx-auto">
+
         {/* Top Section */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 pb-12 border-b border-white/10">
           {/* Brand */}
